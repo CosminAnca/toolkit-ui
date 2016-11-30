@@ -16,7 +16,7 @@ $shine-offset: 25%;
   height: $shine-size;
   width: 100%;
   transition: $global-animation-speed ease-out;
-  z-index: 1000;
+  z-index: z-index(over-everything);
 }
 
 /**
