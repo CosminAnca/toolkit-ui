@@ -21,7 +21,7 @@ $spinner-transition-delay: $global-animation-speed;
   width: 1em; /* [1] */
   height: 1em; /* [1] */
   font-size: $spinner-size; /* [1] */
-  color: #0072c9; /* [2] */
+  color: color(brand); /* [2] */
   border: 0.08em solid; /* [3] */
   border-color: transparent currentColor currentColor; /* [2][4] */
   vertical-align: middle;
@@ -102,7 +102,7 @@ $spinner-transition-delay: $global-animation-speed;
   left: 0; /* [1] */
   opacity: 1; /* [2] */
   visibility: visible; /* [2] */
-  z-index: 1000; /* [3] */
+  z-index: z-index(over-screen); /* [3] */
   transition: opacity $spinner-animation-speed ease, visibility $spinner-animation-speed ease; /* [4] */
 
   /**
