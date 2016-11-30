@@ -47,7 +47,7 @@ $included-tile-themes: "sky-1", "sky-account", "sky-atlantic", "sky-arts", "sky-
   padding: $tile-border-width;
   margin-bottom: $global-spacing-unit;
   will-change: transform;
-  z-index: 10; /* [1] */
+  z-index: z-index(over-content); /* [1] */
 
   &.has-focus {
     @include focus-styles();
@@ -175,7 +175,7 @@ $included-tile-themes: "sky-1", "sky-account", "sky-atlantic", "sky-arts", "sky-
    */
   .c-tile--full & {
     height: auto;
-    z-index: 10;
+    z-index: z-index(over-content);
     position: relative;
   }
 }
@@ -208,7 +208,7 @@ $included-tile-themes: "sky-1", "sky-account", "sky-atlantic", "sky-arts", "sky-
 .c-tile__caption {
   position: relative;
   height: 45%;
-  z-index: 20;
+  z-index: z-index(over-control);
 
   /**
    * Sets height to auto below medium on collapsable tiles
@@ -231,7 +231,7 @@ $included-tile-themes: "sky-1", "sky-account", "sky-atlantic", "sky-arts", "sky-
   left: 1em;
   right: 1em;
   height: 20%;
-  z-index: 20;
+  z-index: z-index(over-control);
 
   &--large {
     height: 25%;
@@ -340,13 +340,13 @@ $included-tile-themes: "sky-1", "sky-account", "sky-atlantic", "sky-arts", "sky-
   }
 
   &::before {
-    z-index: -2; // Set below caption to avoid hiding content
+    z-index: z-index(under-control); // Set below caption to avoid hiding content
   }
 
   .c-tile__link &::after {
     opacity: 0; // Set initial opacity
     transition: opacity $tile-animation-speed ease;
-    z-index: -1; // Set between before and content.
+    z-index: z-index(under-content); // Set between before and content.
   }
 
   .c-tile__link:hover &::after {
@@ -395,7 +395,7 @@ $included-tile-themes: "sky-1", "sky-account", "sky-atlantic", "sky-arts", "sky-
   position: absolute;
   right: 0;
   left: 0;
-  z-index: 1;
+  z-index: z-index(content);
 }
 
 .c-tile__shine--top {

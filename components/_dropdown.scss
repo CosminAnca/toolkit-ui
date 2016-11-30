@@ -48,7 +48,7 @@ $dropdown-focus: 1px 3px rgba(color(black), 0.4), 0 1px 15px 3px rgba(color(high
   background-color: $dropdown-background;
   outline: 0;
   cursor: pointer;
-  z-index: 1; /* [4] */
+  z-index: z-index(content); /* [4] */
   transition: border $dropdown-animation-speed ease, border-radius $dropdown-animation-speed ease, box-shadow $dropdown-animation-speed ease;
 
   &:focus {
@@ -103,7 +103,7 @@ $dropdown-focus: 1px 3px rgba(color(black), 0.4), 0 1px 15px 3px rgba(color(high
   width: 100%;
   position: absolute;
   margin: 0; /* [1] */
-  z-index: 2; /* [2] */
+  z-index: z-index(over-control); /* [2] */
   list-style-type: none; /* [5] */
   background-color: $dropdown-background;
   border-radius: 0 0 $dropdown-border-radius $dropdown-border-radius; /* [3] */
