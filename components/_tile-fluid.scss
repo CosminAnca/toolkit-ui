@@ -19,7 +19,7 @@
  *
  */
 
-$tile-fluid-base-breakpoint: map-get($mq-breakpoints, small);
+$tile-fluid-base-breakpoint: map-get($mq-breakpoints, small) !default;
 
 /* Tile Fluid base font size
  * ==============================================
