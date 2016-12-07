@@ -1,5 +1,5 @@
 /* ==========================================================================
-   COMPONENTS / DROPDOWN
+   COMPONENTS / #DROPDOWN
    ========================================================================== */
 
 // Dropdown settings
@@ -11,7 +11,12 @@ $dropdown-border-radius: $global-border-radius !default;
 $dropdown-shadow: 0 0 0 0 rgba(color(black), 0.2) !default;
 $dropdown-shadow-active: 0 0 8px 0 rgba(color(black), 0.2) !default;
 
+/* Base
+  =========================================== */
+
 /**
+ * Dropdown
+ *
  * Dropdown menus are useful tools for navigation, but shouldn't be used for
  * form input purposes (see `c-form-select` for form use).
  *
@@ -24,7 +29,9 @@ $dropdown-shadow-active: 0 0 8px 0 rgba(color(black), 0.2) !default;
 }
 
 /**
- * The Dropdown label provides context to the menu and acts as an input to
+ * Dropdown Toggle
+ *
+ * Provides context to the menu and acts as an input to
  * toggle the item list.
  *
  * 1. Set font-size and line-height
@@ -54,7 +61,9 @@ $dropdown-shadow-active: 0 0 8px 0 rgba(color(black), 0.2) !default;
   }
 
   /**
-   * The Dropdown label uses an icon to indicate when the menu has been toggled.
+   * Dropdown Indicator
+   *
+   * The Dropdown Toggle uses an icon to indicate when the menu has been toggled.
    * N.B. Temporary use of Base64 until a Sky SVG solution is realised.
    *
    * 3. Allows for positioning from the top and right of the dropdown.
@@ -84,7 +93,9 @@ $dropdown-shadow-active: 0 0 8px 0 rgba(color(black), 0.2) !default;
 }
 
 /**
- * The Dropdown list contains menu items, appearing when the label is toggled.
+ * Dropdown List
+ *
+ * Contains menu items, appearing when the label is toggled.
  *
  * 1. Removes default list margins.
  * 2. Sets the list to be stacked above the the label.
@@ -114,7 +125,9 @@ $dropdown-shadow-active: 0 0 8px 0 rgba(color(black), 0.2) !default;
   transition: all $dropdown-animation-speed ease; /* [13] */
 
   /**
-   * As the Dropdown label and Dropdown list use similar box-shadows, there will
+   * Dropdown Shadow Overlap
+   *
+   * As the Dropdown toggle and Dropdown list use similar box-shadows, there will
    * inevitably be overlap. To prevent this overlap, the Dropdown list uses a
    * pseudo-element with a matching background-color to cover the shadow.
    *
@@ -133,8 +146,9 @@ $dropdown-shadow-active: 0 0 8px 0 rgba(color(black), 0.2) !default;
 }
 
 /**
- * The Dropdown link class provides styling for individual menu items within the
- * Dropdown list.
+ * Dropdown Link
+ *
+ * Provides styling for individual menu items within the Dropdown list.
  *
  * 1. Overides default link color.
  * 2. As we use scaleY on the Dropdown list to toggle the menu, each item is
@@ -164,13 +178,11 @@ $dropdown-shadow-active: 0 0 8px 0 rgba(color(black), 0.2) !default;
   }
 }
 
-/**
- * When a dropdown's state is toggled.
- */
+/* States
+  =========================================== */
+
 .c-dropdown.is-open {
   /**
-   * Dropdown list on toggle.
-   *
    * 1. Scales vertical axis to its full height to achieve 'slide' animation.
    * 2. Sets text to its correct height to animate upon.
   */
@@ -188,8 +200,6 @@ $dropdown-shadow-active: 0 0 8px 0 rgba(color(black), 0.2) !default;
   }
 
   /**
-   * Dropdown label on toggle.
-   *
    * 1. Removes border-radius on bottom edge to overlap the dropdown list.
    * 2. Rotates icon indicator 180 degrees.
   */
@@ -205,8 +215,8 @@ $dropdown-shadow-active: 0 0 8px 0 rgba(color(black), 0.2) !default;
   }
 }
 
-/* Dropdown sizing modifiers
-   =========================================== */
+/* Modifiers
+  =========================================== */
 
 /**
 * For dropdowns that need to display full-width.
