@@ -5,13 +5,11 @@
 // Dropdown settings
 $dropdown-animation-speed: $global-animation-speed !default;
 $dropdown-background: color(white) !default;
-$dropdown-background-focus: #f4f4f4 !default;
+$dropdown-background-focus: color(grey-10) !default;
 $dropdown-border: 1px solid color(grey-20) !default;
 $dropdown-border-radius: $global-border-radius !default;
-$dropdown-shadow-blur-radius: 8px !default;
-$dropdown-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2) !default;
-$dropdown-shadow-active: 0 0 $dropdown-shadow-blur-radius 0 rgba(0, 0, 0, 0.2) !default;
-$dropdown-focus: 1px 3px rgba(color(black), 0.4), 0 1px 15px 3px rgba(color(highlight), 0.75);
+$dropdown-shadow: 0 0 0 0 rgba(color(black), 0.2) !default;
+$dropdown-shadow-active: 0 0 8px 0 rgba(color(black), 0.2) !default;
 
 /**
  * Dropdown menus are useful tools for navigation, but shouldn't be used for
@@ -52,8 +50,7 @@ $dropdown-focus: 1px 3px rgba(color(black), 0.4), 0 1px 15px 3px rgba(color(high
   transition: border $dropdown-animation-speed ease, border-radius $dropdown-animation-speed ease, box-shadow $dropdown-animation-speed ease;
 
   &:focus {
-    box-shadow: $dropdown-focus;
-    outline: none;
+    @include focus-styles();
   }
 
   /**
