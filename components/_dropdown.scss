@@ -185,7 +185,7 @@ $dropdown-shadow-active: 0 0 8px 0 rgba(color(black), 0.2) !default;
   /**
    * 1. Scales vertical axis to its full height to achieve 'slide' animation.
    * 2. Sets text to its correct height to animate upon.
-  */
+   */
   .c-dropdown__list {
     opacity: 1;
     -ms-transform: scaleY(1); /* [1] */
@@ -202,7 +202,7 @@ $dropdown-shadow-active: 0 0 8px 0 rgba(color(black), 0.2) !default;
   /**
    * 1. Removes border-radius on bottom edge to overlap the dropdown list.
    * 2. Rotates icon indicator 180 degrees.
-  */
+   */
   .c-dropdown__toggle {
     border-color: $dropdown-background;
     box-shadow: $dropdown-shadow-active;
@@ -219,16 +219,16 @@ $dropdown-shadow-active: 0 0 8px 0 rgba(color(black), 0.2) !default;
   =========================================== */
 
 /**
-* For dropdowns that need to display full-width.
-*/
+ * For dropdowns that need to display full-width.
+ */
 .c-dropdown--full {
   display: block;
   width: 100%;
 }
 
 /**
-* For dropdowns that need to display full-width on small devices only.
-*/
+ * For dropdowns that need to display full-width on small devices only.
+ */
 .c-dropdown--full\@small-only {
   @include mq($until: medium) {
     display: block;
