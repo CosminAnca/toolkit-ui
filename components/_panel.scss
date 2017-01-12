@@ -3,9 +3,15 @@
    ========================================================================== */
 
 // Panel settings
-$panel-gradient: linear-gradient(to bottom, rgba(160, 160, 160, 0.5) 0%, rgba(0, 0, 0, 0) 12px), linear-gradient(to top, rgba(160, 160, 160, 0.5) 0%, rgba(0, 0, 0, 0) 12px);
-$panel-background-color: color(ui-light) !default;
-$panel-background-color-dark: color(ui-dark) !default;
+//$panel-shadow-size: inset 0 0 12px 0;
+$panel-shadow-size-top: inset 0 12px 12px -12px;
+$panel-shadow-size-bottom: inset 0 -12px 12px -12px;
+$panel-shadow-color: #9f9f9f;
+$panel-shadow-color-dark: color(black);
+$panel-shadow: $panel-shadow-size-top $panel-shadow-color, $panel-shadow-size-bottom $panel-shadow-color;
+$panel-shadow-dark: $panel-shadow-size-top $panel-shadow-color-dark, $panel-shadow-size-bottom $panel-shadow-color-dark;
+$panel-background-color: color(white) !default;
+$panel-background-color-dark: color(grey-50) !default;
 
 /**
  * 1. Break the panel outside of the current container (typically
@@ -17,14 +23,14 @@ $panel-background-color-dark: color(ui-dark) !default;
   width: 100vw; /* [1] */
   margin-left: -50vw; /* [1] */
   background: $panel-background-color;
-  background-image: $panel-gradient;
+  box-shadow: $panel-shadow;
   transition: $global-animation-speed linear;
   transition-property: max-height, margin-bottom;
   overflow: hidden;
   max-height: 0;
 
   &.is-open {
-    max-height: 100vh;
+    max-height: none;
     margin-bottom: $global-spacing-unit;
   }
 }
@@ -34,36 +40,45 @@ $panel-background-color-dark: color(ui-dark) !default;
   padding-bottom: $global-spacing-unit;
 }
 
-/* Darker panels
-  =========================================== */
-
 /**
-  * 1. Darker panels have no shadow/gradient
-  */
+ * Dark panels
+ */
 
 .c-panel--dark {
   background-color: $panel-background-color-dark;
-  background-image: none; /* [1] */
+  box-shadow: $panel-shadow-dark;
   color: color(white);
+}
+
+/**
+ * Constrain panels restrict content to full viewport height when open.
+ */
+
+.c-panel--constrain {
+  &.is-open {
+    max-height: 100vh;
+  }
 }
 
 /* Toggle links
   =========================================== */
 
 /**
-  * Close button for panels
-  * 1. Position the button in top right of panel
-  * 2. Offset cross icon to align with text
-  */
+ * Close button for panels
+ * 1. Position the button in top right of panel
+ * 2. Offset cross icon to align with text
+ */
 
 .c-panel__toggle {
-  @include font-size($text-body-small, 1);
-
+  @include font-size(text-lead-small);
+  line-height: 1;
   position: absolute; /* [1] */
   top: $global-spacing-unit-small; /* [1] */
   right: $global-spacing-unit-small; /* [1] */
   color: color(text);
 
+  /* Toggle icon shouldn't inherit the default link text-decoration */
+  /* stylelint-disable declaration-no-important */
   &::after {
     display: inline-block;
     position: relative;  /* [2] */
@@ -73,6 +88,7 @@ $panel-background-color-dark: color(ui-dark) !default;
     margin-left: $global-spacing-unit-tiny;
     text-decoration: none !important;
   }
+  /* stylelint-enable */
 
   .c-panel--dark & {
     color: color(white);

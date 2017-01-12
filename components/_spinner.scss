@@ -31,7 +31,7 @@ $spinner-transition-delay: $global-animation-speed;
   animation: spin $spinner-animation-speed infinite linear;
   opacity: 1;
   visibility: visible;
-  transition: all $spinner-animation-speed ease;
+  transition: opacity $spinner-animation-speed ease, visibility $spinner-animation-speed ease;
 }
 
 /**
@@ -162,12 +162,12 @@ $spinner-transition-delay: $global-animation-speed;
  * For overlaying light-coloured UI.
  */
 .c-spinner-overlay--light {
-  background-color: color(ui-light);
+  background-color: color(grey-10);
 }
 
 /**
  * For overlaying dark-coloured UI.
  */
 .c-spinner-overlay--dark {
-  background-color: color(ui-dark);
+  background-color: color(grey-50);
 }

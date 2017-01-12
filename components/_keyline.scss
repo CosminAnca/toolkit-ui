@@ -3,8 +3,10 @@
    ========================================================================== */
 
 // Keyline settings
+/* stylelint-disable declaration-block-semicolon-newline-after */
 $keyline-width: 1px !default;
 $keyline-width-thick: $keyline-width * 2 !default;
+/* stylelint-enable */
 
 /**
  * Simple keyline component to provide horizontal rules between other elements.
@@ -15,7 +17,7 @@ $keyline-width-thick: $keyline-width * 2 !default;
 
 /* hr */.c-keyline {
   border: none;
-  border-bottom: $keyline-width solid color(keyline);
+  border-bottom: $keyline-width solid color(grey-20);
   margin-bottom: $global-spacing-unit - $keyline-width; /* [1] */
 }
 
@@ -39,5 +41,4 @@ $keyline-width-thick: $keyline-width * 2 !default;
   &.c-keyline--thick {
     margin-bottom: $global-spacing-unit-small - $keyline-width-thick; /* [1] */
   }
-
 }

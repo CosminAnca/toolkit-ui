@@ -3,9 +3,9 @@
    ========================================================================== */
 
 // Button settings
-$btn-font-size: 18px !default;
-$btn-padding-x: $global-spacing-unit-small !default;
-$btn-padding-y: $global-spacing-unit-tiny !default;
+$btn-font-size: text(text-lead-small) !default;
+$btn-padding-x: 15px !default;
+$btn-padding-y: 5px !default;
 $btn-border-width: $global-border-width !default;
 $btn-border-radius: $global-border-radius !default;
 $btn-animation-speed: $global-animation-speed !default;
@@ -25,7 +25,7 @@ $btn-animation-speed-fast: $global-animation-speed-fast !default;
  * 9.  Remove anchor text-decoration (necessary when styling `a`s as buttons).
  * 10. Base transparent border for modifers to alter.
  * 11. Set default button border-radius.
- * 12. Set default button transition (color, background-color and border-color)
+ * 12. Set default button transition (color, background-color, border-color and box-shadow)
  * 13. Force all button-styled elements to appear clickable.
  * 14. Remove browser outline styles.
  */
@@ -41,14 +41,14 @@ $btn-animation-speed-fast: $global-animation-speed-fast !default;
   text-decoration: none; /* [9] */
   border: $btn-border-width solid transparent; /* [10] */
   border-radius: $btn-border-radius; /* [11] */
-  transition: color $btn-animation-speed ease, background-color $btn-animation-speed ease, border-color $btn-animation-speed ease; /* [12] */
+  transition: color $btn-animation-speed ease, background-color $btn-animation-speed ease, border-color $btn-animation-speed ease, box-shadow $btn-animation-speed ease; /* [12] */
   cursor: pointer; /* [13] */
-  outline: none; /* [14] */
 
   &:hover,
   &:active,
   &:focus {
     text-decoration: none; /* [9] */
+    outline: none; /* [15] */
   }
 
 }
@@ -73,10 +73,13 @@ $btn-animation-speed-fast: $global-animation-speed-fast !default;
   border-color: color(brand);
 
   &:hover,
-  &:active,
-  &:focus {
+  &:active {
     background-color: color(highlight);
     border-color: color(highlight);
+  }
+
+  &:focus {
+    @include focus-styles();
   }
 }
 
@@ -89,11 +92,14 @@ $btn-animation-speed-fast: $global-animation-speed-fast !default;
   border-color: color(brand);
 
   &:hover,
-  &:active,
-  &:focus {
+  &:active {
     color: color(white);
     background-color: color(highlight);
     border-color: color(highlight);
+  }
+
+  &:focus {
+    @include focus-styles();
   }
 }
 
@@ -107,10 +113,14 @@ $btn-animation-speed-fast: $global-animation-speed-fast !default;
   border-color: color(white);
 
   &:hover,
-  &:active,
+  &:active {
+    color: color(text);
+    background-color: color(white);
+    border-color: color(white);
+  }
+
   &:focus {
-    background-color: color(highlight);
-    border-color: color(highlight);
+    @include focus-styles(invert);
   }
 }
 
@@ -126,8 +136,8 @@ $btn-animation-speed-fast: $global-animation-speed-fast !default;
   &:active,
   &:focus {
     color: color(white);
-    background-color: color(keyline);
-    border-color: color(keyline);
+    background-color: color(grey-20);
+    border-color: color(grey-20);
     cursor: not-allowed;
   }
 }
@@ -155,13 +165,15 @@ $btn-animation-speed-fast: $global-animation-speed-fast !default;
 * e.g. `<span class="c-btn  c-btn--select  c-select__btn">Select</span>`
 *
 * A. https://en.bem.info/forum/4/
+*
+* 1. This should be the same value as the icon width used in _select.scss
 */
 .c-btn--select {
-  padding-left: $global-spacing-unit-large;
-  padding-right: $global-spacing-unit-large;
+  padding-left: 40px;/* [1] */
+  padding-right: 40px;/* [1] */
   color: color(brand);
   background-color: transparent;
-  border-color: color(brand);
+  border: none;
   transition: all $btn-animation-speed-fast ease;
 }
 

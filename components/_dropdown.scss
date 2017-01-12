@@ -1,19 +1,22 @@
 /* ==========================================================================
-   COMPONENTS / DROPDOWN
+   COMPONENTS / #DROPDOWN
    ========================================================================== */
 
-// Dropdown settings
+// Dropdown Settings
 $dropdown-animation-speed: $global-animation-speed !default;
 $dropdown-background: color(white) !default;
 $dropdown-background-focus: #f4f4f4 !default;
-$dropdown-border: 1px solid color(keyline) !default;
+$dropdown-border: 1px solid color(grey-20) !default;
 $dropdown-border-radius: $global-border-radius !default;
-$dropdown-font-size: $text-body-small !default;
 $dropdown-shadow-blur-radius: 8px !default;
-$dropdown-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2) !default;
-$dropdown-shadow-focus: 0 0 $dropdown-shadow-blur-radius 0 rgba(0, 0, 0, 0.2) !default;
+$dropdown-shadow-active: 0 0 $dropdown-shadow-blur-radius 0 rgba(0, 0, 0, 0.2) !default;
+
+/* Base
+  =========================================== */
 
 /**
+ * Dropdown
+ *
  * Dropdown menus are useful tools for navigation, but shouldn't be used for
  * form input purposes (see `c-form-select` for form use).
  *
@@ -26,44 +29,43 @@ $dropdown-shadow-focus: 0 0 $dropdown-shadow-blur-radius 0 rgba(0, 0, 0, 0.2) !d
 }
 
 /**
- * The Dropdown label provides context to the menu and acts as an input to
- * toggle the item list.
+ * Dropdown Toggle
+ *
+ * Provides context to the menu and acts as an input to toggle the item list.
  *
  * 1. Set font-size and line-height
  * 2. Displays the label stacked above its menu items.
- * 3. Allows absolute positioning of child pseudo-elements.
- * 4. Set the label font-weight to bold.
- * 5. Sets padding on top, left and bottom whilst providing extra padding on the
+ * 3. Sets padding on top, left and bottom whilst providing extra padding on the
  *    right for the icon.
- * 6. Sets a border to the label to mimic a button appearance.
- * 7. Sets a border-radius to the label to mimic a button appearance.
- * 8. Sets a background-color to the label to mimic a button appearance.
- * 9. Removes any browser default outline styles
- * 10. Forces the cursor to a "clickable" pointer state.
- * 11. Sets stacking order for the menu items to overlap above the label
- *     (essential for the shadow overlap fix)
- * 12. Sets animation settings on transition.
+ * 4. Sets stacking order for the menu items to overlap above the label
+ *    (essential for the shadow overlap fix)
  */
-.c-dropdown__label {
-  @include font-size($dropdown-font-size); /* [1] */
+.c-dropdown__toggle {
+  @include font-size(text-lead-small); /* [1] */
   display: block; /* [2] */
-  position: relative; /* [3] */
-  font-weight: bold; /* [4] */
-  padding: $global-spacing-unit-tiny/2 $global-spacing-unit-large $global-spacing-unit-tiny/2 $global-spacing-unit-small; /* [5] */
-  border: $dropdown-border; /* [6] */
-  border-radius: $dropdown-border-radius; /* [7] */
-  background-color: $dropdown-background; /* [8] */
-  outline: 0; /* [9] */
-  cursor: pointer; /* [10] */
-  z-index: 1; /* [11] */
-  transition: all $dropdown-animation-speed ease; /* [12] */
+  position: relative;
+  padding: $global-spacing-unit-tiny/2 $global-spacing-unit-large $global-spacing-unit-tiny/2 $global-spacing-unit-small; /* [3] */
+  font-weight: bold;
+  text-align: left;
+  border: $dropdown-border;
+  border-radius: $dropdown-border-radius;
+  color: color(text);
+  background-color: $dropdown-background;
+  outline: 0;
+  cursor: pointer;
+  z-index: 1; /* [4] */
+  transition: border $dropdown-animation-speed ease, border-radius $dropdown-animation-speed ease, box-shadow $dropdown-animation-speed ease;
+
+  &:focus {
+    @include focus-styles();
+  }
 
   /**
-   * The Dropdown label uses an icon to indicate when the menu has been toggled.
+   * Dropdown Toggle - Icon
+   *
+   * The Dropdown toggle uses an icon to indicate when the menu is open.
    * N.B. Temporary use of Base64 until a Sky SVG solution is realised.
    *
-   * 1. Sets content to empty.
-   * 2. Allows for greater control of positioning.
    * 3. Allows for positioning from the top and right of the dropdown.
    * 4. Set the icon size.
    * 5. Sets background-image to the icon as Base64.
@@ -91,153 +93,132 @@ $dropdown-shadow-focus: 0 0 $dropdown-shadow-blur-radius 0 rgba(0, 0, 0, 0.2) !d
 }
 
 /**
- * The Dropdown list contains menu items, appearing when the label is toggled.
+ * Dropdown List
  *
- * 1. Allows the list to appear stacked underneath the label.
- * 2. Allows for greater control of positioning.
- * 3. Removes default list margins.
- * 4. Sets the list to be stacked above the the label.
+ * Contains menu items, appearing when the label is toggled.
+ *
+ * 1. Removes default list margins.
+ * 2. Sets the list to be stacked above the the label.
  *    This is essential for the list's pseudo-element overlap fix.
- * 5. Removes default list bullets/numbers.
- * 6. Sets a background-color to compliment the label's appearance.
- * 7. Sets a border-radius on the bottom of the list to compliment the
+ * 3. Sets a border-radius on the bottom of the list to compliment the
  *    label's appearance.
- * 8. Sets a base box-shadow to animate and compliment the label.
- * 9. Visually hides the dropdown list until toggled.
- * 10. Sets a base scaleY to animate.
- * 11. Sets the transform to animate from the top of the element.
- * 12. Compliments the opacity to visually hide the dropdown list.
- * 13. Sets animation settings on transition.
+ * 4. Visually hides the dropdown list until toggled.
+ * 5. Sets a base scaleY to animate.
+ * 6. Sets the transform to animate from the top of the element.
  */
 .c-dropdown__list {
-  display: block; /* [1] */
-  width: 100%; /* [1] */
-  position: absolute; /* [2] */
-  margin: 0; /* [3] */
-  z-index: 2; /* [4] */
+  display: block;
+  width: 100%;
+  position: absolute;
+  margin: 0; /* [1] */
+  z-index: 2; /* [2] */
   list-style-type: none; /* [5] */
-  background-color: $dropdown-background; /* [6] */
-  border-radius: 0 0 $dropdown-border-radius $dropdown-border-radius; /* [7] */
-  box-shadow: $dropdown-shadow-focus; /* [8] */
-  opacity: 0; /* [9] */
-  -ms-transform: scaleY(0); /* [10] */
-  transform: scaleY(0); /* [10] */
-  -ms-transform-origin: top; /* [11] */
-  transform-origin: top; /* [11] */
-  visibility: hidden; /* [12] */
+  background-color: $dropdown-background;
+  border-radius: 0 0 $dropdown-border-radius $dropdown-border-radius; /* [3] */
+  box-shadow: $dropdown-shadow-active;
+  opacity: 0; /* [4] */
+  -ms-transform: scaleY(0); /* [5] */
+  transform: scaleY(0); /* [5] */
+  -ms-transform-origin: top; /* [6] */
+  transform-origin: top; /* [6] */
+  visibility: hidden; /* [4] */
   transition: all $dropdown-animation-speed ease; /* [13] */
 
   /**
-   * As the Dropdown label and Dropdown list use similar box-shadows, there will
+   * Dropdown Overlap Fix
+   *
+   * As the Dropdown toggle and list use similar box-shadows, there will
    * inevitably be overlap. To prevent this overlap, the Dropdown list uses a
    * pseudo-element with a matching background-color to cover the shadow.
    *
-   * 1. Sets content to empty.
-   * 2. Allows for greater control of positioning.
-   * 3. Allows for the pseudo-element to stack above the list and fill width.
-   * 4. Sets height and positioning to match and cover the shadow's blur radius.
-   * 5. Matches the Dropdown label background to hide the shadow.
+   * 1. Sets height and positioning to match and cover the shadow's blur radius.
+   * 2. Matches the Dropdown label background to hide the shadow.
    */
   &::before {
-    content: ""; /* [1] */
-    position: absolute; /* [2] */
-    display: block; /* [3] */
-    width: 100%; /* [3] */
-    height: $dropdown-shadow-blur-radius; /* [4] */
-    top: -$dropdown-shadow-blur-radius; /* [4] */
-    background-color: $dropdown-background; /* [5] */
+    content: "";
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: $dropdown-shadow-blur-radius; /* [1] */
+    top: -$dropdown-shadow-blur-radius; /* [1] */
+    background-color: $dropdown-background; /* [2] */
   }
 }
 
 /**
- * The Dropdown link class provides styling for individual menu items within the
- * Dropdown list.
+ * Dropdown Link
  *
- * 1. Set font-size and line-height
- * 2. Allows menu items to be stacked on top of eachother.
- * 3. Provides padding to compliment the label.
- * 4. Overides default link color.
- * 5. As we use scaleY on the Dropdown list to toggle the menu, each item is
+ * Provides styling for individual menu items within the Dropdown list.
+ *
+ * 1. Overides default link color.
+ * 2. As we use scaleY on the Dropdown list to toggle the menu, each item is
  *    scaled slightly larger at the start to counteract the Dropdown list scaleY
  *    and prevent a "squashed" appearance on toggle.
- * 6. Allows us to transition the link opacity slightly faster than the list.
- * 7. Animates the transform and opacity property on transition.
- * 8. Sets background color to appear darker on hover and focus.
- * 9. As we can't hide the overflow, a border-radius is set on the last-child.
+ * 3. Allows us to transition the link opacity slightly faster than the list.
+ * 4. As we can't hide the overflow, a border-radius is set on the last-child.
  */
 .c-dropdown__link {
-  @include font-size($dropdown-font-size); /* [1] */
-  display: block; /* [2] */
-  width: 100%; /* [2] */
-  padding: $global-spacing-unit-tiny/2 $global-spacing-unit-small; /* [3] */
-  color: color(text); /* [4] */
-  -ms-transform: scaleY(2.5); /* [5] */
-  transform: scaleY(2.5); /* [5] */
-  opacity: 0; /* [6] */
-  transition: transform $dropdown-animation-speed ease, opacity $global-animation-speed-fast ease; /* [7] */
+  @include font-size(text-lead-small);
+  display: block;
+  width: 100%;
+  padding: $global-spacing-unit-tiny/2 $global-spacing-unit-small;
+  color: color(text); /* [1] */
+  -ms-transform: scaleY(2.5); /* [2] */
+  transform: scaleY(2.5); /* [2] */
+  opacity: 0; /* [3] */
+  transition: transform $dropdown-animation-speed ease, opacity $global-animation-speed-fast ease;
+
+  .c-dropdown__item:last-child & {
+    border-radius: 0 0 $dropdown-border-radius $dropdown-border-radius; /* [4] */
+  }
 
   &:hover,
   &:focus {
-    background-color: $dropdown-background-focus; /* [8] */
-  }
-
-  &:last-child {
-    border-radius: 0 0 $dropdown-border-radius $dropdown-border-radius; /* [9] */
+    background-color: $dropdown-background-focus;
   }
 }
+
+/* States
+  =========================================== */
 
 /**
- * The Dropdown input is essential for the Dropdown's functionality, allowing
- * the list to be toggled through a hidden checkbox input.
- *
- * 1. Hides the checkbox input.
-*/
-.c-dropdown__input {
-  display: none; /* [1] */
-
+ * When a dropdown's state is toggled.
+ */
+.c-dropdown.is-open {
   /**
-   * Dropdown list on toggle.
-   *
-   * 1. Shows the dropdown list.
-   * 2. Scales vertical axis to its full height to achieve 'slide' animation.
-   * 3. Sets the content to visible.
-   * 4. Sets text to its correct height.
-   * 5. Sets text to display.
+   * 1. Scales vertical axis to its full height to achieve 'slide' animation.
+   * 2. Sets text to its correct height to animate upon.
   */
-  &:checked ~ .c-dropdown__list {
-    opacity: 1; /* [1] */
+  .c-dropdown__list {
+    opacity: 1;
+    -ms-transform: scaleY(1); /* [1] */
+    transform: scaleY(1); /* [1] */
+    visibility: visible;
+  }
+
+  .c-dropdown__link {
+    opacity: 1;
     -ms-transform: scaleY(1); /* [2] */
     transform: scaleY(1); /* [2] */
-    visibility: visible; /* [3] */
-
-    .c-dropdown__link {
-      -ms-transform: scaleY(1); /* [4] */
-      transform: scaleY(1); /* [4] */
-      opacity: 1; /* [5] */
-    }
   }
 
   /**
-   * Dropdown label on toggle.
-   *
-   * 1. Sets border-color to match background color.
-   * 2. Sets box-shadow to an active state.
-   * 3. Removes border-radius on bottom edge to overlap the dropdown list.
-   * 4. Rotates icon indicator 180 degrees.
+   * 1. Removes border-radius on bottom edge to overlap the dropdown list.
+   * 2. Rotates icon indicator 180 degrees.
   */
-  &:checked ~ .c-dropdown__label {
+  .c-dropdown__toggle {
     border-color: $dropdown-background;
-    box-shadow: $dropdown-shadow-focus;
-    border-radius: $dropdown-border-radius $dropdown-border-radius 0 0;
+    box-shadow: $dropdown-shadow-active;
+    border-radius: $dropdown-border-radius $dropdown-border-radius 0 0; /* [1] */
 
     &::after {
-      -ms-transform: translateZ(0) rotate(180deg);
-      transform: translateZ(0) rotate(180deg);
+      -ms-transform: translateZ(0) rotate(180deg); /* [2] */
+      transform: translateZ(0) rotate(180deg); /* [2] */
     }
   }
 }
 
-/* Dropdown sizing modifiers
+/* Modifiers
    =========================================== */
 
 /**
@@ -246,14 +227,22 @@ $dropdown-shadow-focus: 0 0 $dropdown-shadow-blur-radius 0 rgba(0, 0, 0, 0.2) !d
 .c-dropdown--full {
   display: block;
   width: 100%;
+
+  .c-dropdown__toggle {
+    width: 100%;
+  }
 }
 
 /**
 * For dropdowns that need to display full-width on small devices only.
 */
 .c-dropdown--full\@small-only {
-  @include mq($until: medium) {
+  @include mq($until: small) {
     display: block;
     width: 100%;
+
+    .c-dropdown__toggle {
+      width: 100%;
+    }
   }
 }

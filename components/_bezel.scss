@@ -11,6 +11,8 @@ $bezel-border-colour: rgba(color(white), 0.3) !default;
 
 .c-bezel {
   display: inline-block;
+  max-width: 100%;
+  pointer-events: none;
   position: relative;
 
   &::after {
