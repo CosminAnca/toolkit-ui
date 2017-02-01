@@ -1,3 +1,10 @@
+# Toolkit UI v1.5.1
+
+## 1. Fixes
+- [package] Manage own dependencies. Added `devDependencies`
+
+===
+
 # Toolkit UI v1.5.0
 
 ## 1. Dependencies
